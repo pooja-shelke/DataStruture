@@ -1,0 +1,155 @@
+# DataStruture
+
+
+import java.util.Scanner;
+
+class Node 
+{
+	 int data;
+	Node next;
+
+}
+
+
+class LinkedList
+{
+	Node head;
+	
+	public void insert(int data)
+	{
+		Node node=new Node();
+		node.data=data;
+		node.next=null;
+		
+		if(head==null)
+		{
+			head=node;
+		}
+		else
+		{
+			Node temp=head;
+			
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=node;
+			node.next=null;
+		}
+	}
+	
+	
+	public void InsertAtFirst(int data)
+	{
+		Node node=new Node();
+		node.data=data;
+		node.next=null;
+		
+		Node temp=head;
+		
+		node.next=temp;
+	    head=node;
+	}
+	
+	
+	public void InsertAtPos(int index,int data)
+	{
+		Node node=new Node();
+		node.data=data;
+		node.next=null;
+		
+		Node temp=head;
+		
+		for(int i=0;i<index-1;i++)
+		{
+			temp=temp.next;
+		}
+		node.next=temp.next;
+		temp.next=node;
+	}
+	
+	public void DeleteFirst()
+	{
+		Node temp=head;
+		
+		head=temp.next;
+	}
+	
+	public void DeleteLast()
+	{
+		Node temp=head;
+		
+		while(temp.next.next!=null)
+		{
+			temp=temp.next;
+		}
+		temp.next=null;
+	}
+	
+	public void DeleteAtPos(int index)
+	{
+		Node temp=head;
+		
+		for(int i=0;i<index-1;i++)
+		{
+			temp=temp.next;
+		}
+		temp.next=temp.next.next;
+		
+	}
+	public void show()
+	{
+		Node temp=head;
+		
+		while(temp.next!=null)
+		{
+			System.out.print("|"+temp.data+"|->");
+			temp=temp.next;	
+		}
+		System.out.print("|"+temp.data+"|");
+	}
+}
+
+class Runner
+{
+	public static void main(String []args)
+	{
+		LinkedList list=new LinkedList();
+		
+		Scanner sobj=new Scanner(System.in);
+		
+		System.out.println("Enter Size");
+		
+		int iValue=sobj.nextInt();
+		
+		System.out.println("Enter elements");
+		
+		
+		
+		for(int i=0;i<iValue;i++)
+		{	
+			int numbers=sobj.nextInt();
+			
+			list.insert(numbers);
+		}
+		
+		
+
+		//list.InsertAtFirst(60);
+		//list.InsertAtPos(2,70);
+		
+		//|60|->|2|->|70|->|5|->|8| 
+
+			
+		//list.DeleteFirst();                  //|2|->|70|->|5|->|8|
+		
+		//list.DeleteLast();//|60|->|2|->|70|->|5|
+		
+		//list.DeleteAtPos(2);//|60|->|2|->|5|->|8|
+		
+		
+		
+		list.show();
+		
+	}
+}
