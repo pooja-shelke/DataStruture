@@ -1,0 +1,57 @@
+# DataStruture
+
+package stackStructure;
+
+ class Stack {
+	
+	int[] stackArr=new int[5];
+	int top=0;
+	
+	public void push(int data)
+	{
+		stackArr[top]=data;
+		top++;
+	}
+	
+	
+	public int pop()
+	{
+		int top=0;
+		int data=stackArr[top];
+		stackArr[top]=0;
+		return data;
+	}
+	
+	public void show()
+	{
+		System.out.println("Elements from stack is:");
+		{
+		for(int i=0;i<stackArr.length;i++)
+		{
+			System.out.print("|"+stackArr[i]+"|");
+		}
+		System.out.println();
+		}
+	}
+
+}
+
+
+public class Runner {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Stack st=new Stack();
+		st.push(10);
+		st.push(20);
+		st.push(30);
+		st.push(40);
+		st.push(50);
+		
+		System.out.println("Poped Elements is:"+st.pop());
+		
+		st.show();
+	}
+
+}
