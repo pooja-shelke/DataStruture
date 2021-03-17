@@ -1,0 +1,116 @@
+# DataStruture
+
+
+//--------------------------Problem Statement--------------------------------------------------
+//Write a program which search first occurrence of particular element from
+//singly linear linked list.
+//Function should return position at which element is found.
+//Function Prototype :int SearchFirstOcc( int no );
+//Input linked list : |10|->|20|->|30|->|40|->|50|->|30|->|70|
+//Input element : 30
+//Output : 3
+//____________________________________________________________________________________________
+
+
+
+
+import java.util.Scanner;
+
+class Node
+{
+	int data;
+	Node next;
+}
+
+
+class LinkedList
+{
+	Node head;
+	
+	public void InsertFirst(int data)
+	{
+		Node node =new Node();
+		node.data=data;
+		node.next=null;
+		
+		if(head==null)
+		{
+			head=node;
+		}
+		else
+		{
+			Node temp=head;
+			
+			node.next=temp;
+			head=node;
+		}
+	}
+	
+	public int SearchFirstOcc(int idata)
+	{
+		Node temp=head;
+	    int iCnt=0;
+		while(temp.next!=null)
+		{
+			iCnt++;
+			if(temp.data==idata)
+			{
+				break;
+			}
+			temp=temp.next;
+			
+		}
+		return iCnt;
+		
+	}
+	
+	
+	public void Display()
+	{
+	
+		Node temp=head;
+		System.out.print("head");
+		while(temp.next!=null)
+		{
+			System.out.print("->|"+temp.data+"|");
+			temp=temp.next;
+			
+		}
+		System.out.print("->|"+temp.data+"|");
+	}
+	
+}
+
+public class Runner
+{
+	public static void main(String[]args)
+	{
+		Scanner sobj=new Scanner(System.in);
+		
+		LinkedList list=new LinkedList();
+		
+		System.out.println("How many Elements you want to insert into the linked list ");
+		int iValue=sobj.nextInt();
+		
+		System.out.println("Enter Elements into the linked list");
+		
+		for(int i=0;i<iValue;i++)
+		{
+			int Number=sobj.nextInt();
+			
+			list.InsertFirst(Number);
+		}
+		
+		list.Display();
+		
+		System.out.println("\n");
+		
+		System.out.println("Please Enter Elements that you want Search");
+		int iNo=sobj.nextInt();
+		
+		int iRet=list.SearchFirstOcc(iNo);
+		
+		System.out.println("Occurence of a elements that you serached is:"+iRet);
+	
+	}
+}
