@@ -1,0 +1,111 @@
+# DataStruture
+
+Write a program which display product of all digits of all element from singly linear linked list. (Don’t consider 0)
+
+Function Prototype : void DisplayProduct( PNODE Head);
+
+Input linked list : |11|->|20|->|32|->|41|
+Output : 1 2 6 4
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct Node 
+{
+	int data;
+	struct  Node * next;
+	
+};
+
+
+typedef struct Node NODE;
+typedef struct Node * PNODE;
+typedef struct Node ** PPNODE;
+
+
+void InsertFirst(PPNODE head,int data)
+{
+	PNODE node=(PNODE)malloc(sizeof(NODE));
+
+	node->data=data;
+	node->next=NULL;
+
+	if(*head==NULL)
+	{
+		*head=node;
+	}
+	else
+	{
+		node->next=*head;
+		*head=node;
+	}
+}
+
+void DisplayProduct( PNODE head)
+{
+	PNODE temp=head;
+	
+	int iDigit=0;
+  
+printf("Multiplication of a digit is\n");
+	while(temp!=NULL)
+	{
+		 int iMult=1;
+		while(temp->data!=0)
+		{
+			iDigit=temp->data%10;
+			if(iDigit==0)
+			{
+				iDigit=1;
+			}
+			iMult=iMult*iDigit;
+			temp->data=temp->data/10;
+		}
+			printf("%d\n",iMult);
+		 
+		temp=temp->next;
+
+	}
+
+}
+void Display(PNODE head)
+{
+	PNODE temp=head;
+
+	printf("head");
+
+	while(temp!=NULL)
+	{
+		printf("->|%d|",temp->data);
+		temp=temp->next;
+	}
+}
+
+
+
+int main()
+{
+
+	PNODE first=NULL;
+
+	int iValue=0,no=0,iRet1=0,i=0;
+
+	printf("Enter Value");
+	scanf("%d",&iValue);
+
+	printf("Insert First");
+	for(i=0;i<iValue;i++)
+	{
+		scanf("%d",&no);
+
+		InsertFirst(&first,no);
+	}
+
+	Display(first);
+	printf("\n");
+  
+   DisplayProduct((first);
+    
+    return 0;
+   
+ }
