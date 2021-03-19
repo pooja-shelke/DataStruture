@@ -1,0 +1,113 @@
+# DataStruture
+
+Write a program which display all palindrome elements of singly linked list.
+
+Function Prototype :  void DisplayPallindrome( PNODE head);
+
+Input linked list : |11|->|28|->|17|->|414|->|6|->|89|
+
+Output : 11 6 414
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct Node 
+{
+	int data;
+	struct  Node * next;
+	
+};
+
+
+typedef struct Node NODE;
+typedef struct Node * PNODE;
+typedef struct Node ** PPNODE;
+
+
+void InsertFirst(PPNODE head,int data)
+{
+	PNODE node=(PNODE)malloc(sizeof(NODE));
+
+	node->data=data;
+	node->next=NULL;
+
+	if(*head==NULL)
+	{
+		*head=node;
+	}
+	else
+	{
+		node->next=*head;
+		*head=node;
+	}
+}
+
+
+void DisplayPallindrome( PNODE head)
+{
+	PNODE temp=head;
+	
+	int iDigit=0;
+	int iValue=0;
+	
+printf("Pallindrome number is\n");
+	while(temp!=NULL)
+	{
+		iValue=temp->data;
+		
+		 int iRev=0;
+		while(temp->data!=0)
+		{
+			iDigit=temp->data%10;
+			iRev=iRev*10+iDigit;
+			temp->data=temp->data/10;
+		}
+			
+		 if(iRev==iValue)
+		  {
+		 	printf("%d\n",iValue);				
+		  }
+		temp=temp->next;
+	}
+}
+
+
+void Display(PNODE head)
+{
+	PNODE temp=head;
+
+	printf("head");
+
+	while(temp!=NULL)
+	{
+		printf("->|%d|",temp->data);
+		temp=temp->next;
+	}
+}
+
+
+int main()
+{
+
+	PNODE first=NULL;
+
+	int iValue=0,no=0,iRet1=0,i=0;
+
+	printf("Enter Value");
+	scanf("%d",&iValue);
+
+	printf("Insert First");
+	for(i=0;i<iValue;i++)
+	{
+		scanf("%d",&no);
+
+		InsertFirst(&first,no);
+	}
+
+	Display(first);
+	printf("\n");
+  
+  DisplayPallindrome(first);
+    
+  return 0;
+ }
